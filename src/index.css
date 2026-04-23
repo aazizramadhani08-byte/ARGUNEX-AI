@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* =============================================
+   TAILWIND V4 THEME - CSS-First Configuration
+   ============================================= */
+@theme {
+  /* Colors */
+  --color-bg-dark: #070912;
+  --color-bg-card: rgba(18, 22, 41, 0.6);
+  --color-bg-card-hover: rgba(25, 30, 53, 0.8);
+
+  --color-accent-cyan: #00f0ff;
+  --color-accent-blue: #3b82f6;
+  --color-accent-purple: #8b5cf6;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a8c2;
+  --color-text-muted: #6b7280;
+
+  --color-border-color: rgba(255, 255, 255, 0.08);
+  --color-border-glow: rgba(0, 240, 255, 0.3);
+
+  /* Fonts */
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+
+  /* Box Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-neon: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* =============================================
+   CSS CUSTOM PROPERTIES (for manual CSS usage)
+   ============================================= */
+:root {
+  --accent-cyan: #00f0ff;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --bg-dark: #070912;
+  --bg-card: rgba(18, 22, 41, 0.6);
+  --bg-card-hover: rgba(25, 30, 53, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a8c2;
+  --text-muted: #6b7280;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 240, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-blur: blur(12px);
+  --neon-glow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* =============================================
+   BASE RESET & BODY
+   ============================================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Dynamic Background Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit);
+  letter-spacing: -0.02em;
+}
+
+/* =============================================
+   COMPONENT UTILITIES
+   ============================================= */
+
+/* Glassmorphism */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease;
+}
+.glass-panel:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(to right, #00f0ff, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: var(--font-outfit);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+}
+.btn-primary {
+  background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+.btn-outline:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: var(--neon-glow);
+  transform: translateY(-2px);
+}
+
+/* Layout */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Upload Zone */
+.upload-zone {
+  border: 2px dashed var(--border-color);
+  background: rgba(18, 22, 41, 0.4);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.upload-zone:hover, .upload-zone.drag-active {
+  border-color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.05);
+}
+.upload-zone svg {
+  color: var(--accent-blue);
+  margin-bottom: 16px;
+}
+.upload-zone p {
+  color: var(--text-secondary);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+
+@keyframes pulse-glow {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); }
+  70%  { box-shadow: 0 0 0 15px rgba(0, 240, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+}
+.pulse-effect { animation: pulse-glow 2s infinite; }
